@@ -32,7 +32,7 @@ const colors = [
     "#ff3f34"
 ];
 
-const button = document.querySelector("button");
+const button = document.querySelector(".click");
 const code1 = document.querySelector("span:first-child");
 const code2 = document.querySelector("span:last-child");
 
@@ -49,4 +49,28 @@ function bgColor() {
 
 button.addEventListener("click", bgColor);
 
+document.querySelector("#copy1").addEventListener('click', function() {
+	const reference_element = document.querySelector('#code1');
+	const range = document.createRange();  
+	range.selectNodeContents(reference_element);
+	window.getSelection().addRange(range);
+	const success = document.execCommand('copy');
+	if(success)
+		console.log('Successfully copied to clipboard');
+	else
+		console.log('Unable to copy to clipboard');
+	window.getSelection().removeRange(range);
+});
 
+document.querySelector("#copy2").addEventListener('click', function() {
+	const reference_element = document.querySelector('#code2');
+	const range = document.createRange();  
+	range.selectNodeContents(reference_element);
+	window.getSelection().addRange(range);
+	const success = document.execCommand('copy');
+	if(success)
+		console.log('Successfully copied to clipboard');
+	else
+		console.log('Unable to copy to clipboard');
+	window.getSelection().removeRange(range);
+});
